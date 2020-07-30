@@ -1,0 +1,7 @@
+{
+  "name": "BD-Like Plugin Settings",
+  "author": "Oocrop",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "Makes Powercord's plugin settings to render like in BD"
+}
