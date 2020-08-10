@@ -1,5 +1,5 @@
 const { Plugin } = require("powercord/entities");
-const { inject, uninject, isInjected } = require("powercord/injector");
+const { inject, uninject } = require("powercord/injector");
 const { React, getModule, i18n: { Messages } } = require("powercord/webpack");
 const { findInReactTree } = require("powercord/util");
 const { Button, Card, Clickable, Divider, Icons: { Close }, Tooltip } = require("powercord/components");
@@ -33,10 +33,10 @@ module.exports = class BDLikeSettings extends Plugin {
     }
 
     pluginWillUnload() {
-        if (isInjected("bd-like-settings_IPrenderPatch")) uninject("bd-like-settings_IPrenderPatch");
-        if (isInjected("bd-like-settings_IPrenderFooterPatch")) uninject("bd-like-settings_IPrenderFooterPatch");
-        if (isInjected("bd-like-settings_makeSectionPatch")) uninject("bd-like-settings_makeSectionPatch");
-        if (isInjected("bd-like-settings_getPredicateSectionsPatch")) uninject("bd-like-settings_getPredicateSectionsPatch");
+        uninject("bd-like-settings_IPrenderPatch");
+        uninject("bd-like-settings_IPrenderFooterPatch");
+        uninject("bd-like-settings_makeSectionPatch");
+        uninject("bd-like-settings_getPredicateSectionsPatch");
         powercord.api.settings.unregisterSettings(this.entityID);
     }
 
