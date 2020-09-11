@@ -21,11 +21,11 @@ module.exports = class Settings extends React.Component {
                 opened={this.state.pluginsCategoryOpen}
                 onChange={() => this.setState({ pluginsCategoryOpen: !this.state.pluginsCategoryOpen })}
             >
-                {Object.values(powercord.api.settings.tabs).filter(p => !p.category.startsWith("pc-")).map(p =>
+                {Object.keys(powercord.api.settings.tabs).filter(p => !p.startsWith("pc-")).map(p =>
                     <SwitchItem
-                        value={getSetting(p.category, false)}
-                        onChange={() => toggleSetting(p.category, false)}
-                    >{p.label}</SwitchItem>
+                        value={getSetting(p, false)}
+                        onChange={() => toggleSetting(p, false)}
+                    >{powercord.api.settings.tabs[p].label}</SwitchItem>
                 )}
             </Category>
         </>;
