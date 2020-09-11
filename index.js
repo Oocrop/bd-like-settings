@@ -96,9 +96,12 @@ module.exports = class BDLikeSettings extends Plugin {
             this.props.hasSettings = false;
             return res;
         }
-        if (powercord.api.settings.tabs[this.props.plugin.entityID])
-            this.props.hasSettings = true,
-                this.props.settingsTab = powercord.api.settings.tabs[this.props.plugin.entityID];
+        const tabs = Object.values(powercord.api.settings.tabs);
+        if (
+            (this.props.settingsTab = powercord.api.settings.tabs[this.props.plugin.entityID] ||
+                tabs.find(t => t.category == this.props.plugin.entityID))
+            && this.props.settingsTab)
+            this.props.hasSettings = true;
         else this.props.hasSettings = false;
         if (this.props.hasSettings) {
             const buttons = findInReactTree(res, c => c.props && c.props.className == "buttons");
