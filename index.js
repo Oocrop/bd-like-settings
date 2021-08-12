@@ -208,7 +208,7 @@ module.exports = class BDLikeSettings extends (
         if (this.props.hasSettings) {
             const buttons = findInReactTree(
                 res,
-                c => c.props && c.props.className == "buttons"
+                c => c.props && c.props.className == "powercord-product-footer"
             );
             if (!Array.isArray(buttons.props.children))
                 buttons.props.children = [buttons.props.children];
