@@ -141,13 +141,7 @@ module.exports = class BDLikeSettings extends Plugin {
 				_this.settings.get(this.props.plugin.entityID))
 		) {
 			this.props.hasSettings = false;
-			this.props.goToSettings = () => {
-				try {
-					_this.settingsModule.open(key);
-				} catch (e) {
-					console.warn(e.message);
-				}
-			};
+			this.props.goToSettings = () => _this.settingsModule.open(key);
 			return [];
 		}
 		return [];
