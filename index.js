@@ -13,14 +13,34 @@ const {
 	Icons: { Close, Gear },
 	Tooltip
 } = require("powercord/components");
-const InstalledProduct = require("../pc-moduleManager/components/parts/InstalledProduct.jsx");
-const Settings = require("../pc-settings/index.js");
-const ErrorBoundary = require("../pc-settings/components/ErrorBoundary.jsx");
+// const InstalledProduct = require("../pc-moduleManager/components/parts/InstalledProduct.jsx");
+// const Settings = require("../pc-settings/index.js");
+// const ErrorBoundary = require("../pc-settings/components/ErrorBoundary.jsx");
 const PluginSettings = require("./Settings");
 var _this;
 
 module.exports = class BDLikeSettings extends Plugin {
 	async startPlugin() {
+		powercord.api.notices.sendAnnouncement("bd-like-settings-deprecation", {
+			color: "red",
+			message: createElement(
+				"div",
+				null,
+				"BD-Like Settings is deprecated in favor of ",
+				createElement(
+					"a",
+					{ href: "https://github.com/mr-miner1/better-settings" },
+					"better-settings"
+				),
+				". See settings for more information"
+			),
+			button: {
+				onClick: () =>
+					powercord.pluginManager.disable("bd-like-settings"),
+				text: "Disable the plugin"
+			}
+		});
+		return;
 		_this = this;
 
 		powercord.api.settings.registerSettings(this.entityID, {
@@ -75,6 +95,7 @@ module.exports = class BDLikeSettings extends Plugin {
 	}
 
 	pluginWillUnload() {
+		return;
 		uninject("bd-like-settings_productRenderPrePatch");
 		uninject("bd-like-settings_productRenderPatch");
 		uninject("bd-like-settings_productRenderFooterPatch");
